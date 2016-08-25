@@ -423,7 +423,8 @@ public class TestAggregates {
                 + "            \"interval\" : \"month\",\n" //
                 + "            \"order\" : {\n" //
                 + "              \"_count\" : \"desc\"\n" //
-                + "            }\n" //
+                + "            },\n" //
+                + "            \"pre_zone\" : \"Europe/Paris\"\n" //
                 + "          }\n" //
                 + "        }\n" //
                 + "      }\n" //

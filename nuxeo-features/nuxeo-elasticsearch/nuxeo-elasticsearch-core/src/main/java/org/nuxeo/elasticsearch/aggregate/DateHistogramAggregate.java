@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.elasticsearch.common.unit.TimeValue;
@@ -68,7 +69,9 @@ public class DateHistogramAggregate extends AggregateEsBase<BucketRangeDate> {
     @JsonIgnore
     @Override
     public DateHistogramBuilder getEsAggregate() {
-        DateHistogramBuilder ret = AggregationBuilders.dateHistogram(getId()).field(getField());
+        DateHistogramBuilder ret = AggregationBuilders.dateHistogram(getId())
+                                                      .field(getField())
+                                                      .timeZone(TimeZone.getDefault().getID());
         Map<String, String> props = getProperties();
         if (props.containsKey(AGG_INTERVAL_PROP)) {
             ret.interval(new DateHistogram.Interval(props.get(AGG_INTERVAL_PROP)));
